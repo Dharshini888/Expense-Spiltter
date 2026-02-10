@@ -144,7 +144,7 @@ export default function Dashboard({ groups = [] }) {
 
                 {/* Stat Cards */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <motion.div variants={itemVariants}>
                             <Paper sx={{ p: 3, borderRadius: 1, bgcolor: "primary.main", color: "white", border: 'none' }}>
                                 <Stack direction="row" spacing={2} alignItems="center">
@@ -157,7 +157,7 @@ export default function Dashboard({ groups = [] }) {
                             </Paper>
                         </motion.div>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <motion.div variants={itemVariants}>
                             <Paper sx={{ p: 3, borderRadius: 1 }}>
                                 <Stack direction="row" spacing={2} alignItems="center">
@@ -170,7 +170,7 @@ export default function Dashboard({ groups = [] }) {
                             </Paper>
                         </motion.div>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <motion.div variants={itemVariants}>
                             <Paper sx={{ p: 3, borderRadius: 1 }}>
                                 <Stack direction="row" spacing={2} alignItems="center">
@@ -183,7 +183,7 @@ export default function Dashboard({ groups = [] }) {
                             </Paper>
                         </motion.div>
                     </Grid>
-                    <Grid item xs={12} sm={6} md={3}>
+                    <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                         <motion.div variants={itemVariants}>
                             <Paper sx={{ p: 3, borderRadius: 1 }}>
                                 <Stack direction="row" spacing={2} alignItems="center">
@@ -200,7 +200,7 @@ export default function Dashboard({ groups = [] }) {
 
                 {/* Charts Area */}
                 <Grid container spacing={3} sx={{ mb: 4 }}>
-                    <Grid item xs={12} md={8}>
+                    <Grid size={{ xs: 12, md: 8 }}>
                         <motion.div variants={itemVariants}>
                             <Paper sx={{ p: 3, borderRadius: 1, height: "100%" }}>
                                 <Typography variant="overline" sx={{ mb: 3, display: 'block', fontWeight: 800, letterSpacing: '2px', color: 'primary.main' }}>Spending Velocity (7 Days)</Typography>
@@ -236,7 +236,7 @@ export default function Dashboard({ groups = [] }) {
                             </Paper>
                         </motion.div>
                     </Grid>
-                    <Grid item xs={12} md={4}>
+                    <Grid size={{ xs: 12, md: 4 }}>
                         <motion.div variants={itemVariants}>
                             <Paper sx={{ p: 3, borderRadius: 1, height: "100%" }}>
                                 <Typography variant="overline" sx={{ mb: 3, display: 'block', fontWeight: 800, letterSpacing: '2px', color: 'secondary.main' }}>Categorical Mix</Typography>

@@ -113,7 +113,7 @@ export default function Groups({ groups = [], refreshGroups }) {
                                 <AnimatePresence>
                                         {paginatedGroups.length > 0 ? (
                                                 paginatedGroups.map((group, index) => (
-                                                        <Grid item xs={12} sm={6} md={4} key={group.groupId}>
+                                                        <Grid size={{ xs: 12, sm: 6, md: 4 }} key={group.groupId}>
                                                                 <motion.div
                                                                         layout
                                                                         initial={{ opacity: 0, y: 30 }}
@@ -171,7 +171,7 @@ export default function Groups({ groups = [], refreshGroups }) {
                                                         </Grid>
                                                 ))
                                         ) : (
-                                                <Grid item xs={12}>
+                                                <Grid size={{ xs: 12 }}>
                                                         <Box sx={{ textAlign: "center", py: 10, bgcolor: "background.paper", borderRadius: 4 }}>
                                                                 <GroupIcon sx={{ fontSize: 80, color: "text.disabled", mb: 2 }} />
                                                                 <Typography variant="h5" color="text.secondary">No groups found here.</Typography>

@@ -117,7 +117,7 @@ export default function CreateGroupForm({ onGroupAdded }) {
                             <Typography variant="subtitle2" sx={{ color: 'text.secondary', fontWeight: 700, mb: 2, textTransform: 'uppercase', letterSpacing: '1px' }}>Select Category</Typography>
                             <Grid container spacing={2}>
                                 {groupCategories.map(cat => (
-                                    <Grid item xs={6} sm={4} key={cat.name}>
+                                    <Grid size={{ xs: 6, sm: 4 }} key={cat.name}>
                                         <Button
                                             fullWidth
                                             variant={category === cat.name ? "contained" : "outlined"}

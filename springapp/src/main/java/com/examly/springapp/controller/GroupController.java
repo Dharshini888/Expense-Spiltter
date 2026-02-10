@@ -382,9 +382,16 @@ public class GroupController {
             Group group;
             if (ownerIdObj != null) {
                 Long ownerId = Long.valueOf(ownerIdObj.toString());
-                User owner = userRepository.findById(ownerId)
-                        .orElseThrow(() -> new IllegalArgumentException("Owner not found"));
-                group = groupService.createGroup(groupName, members, owner, category);
+                User owner = userRepository.findById(ownerId).orElse(null);
+                if (owner != null) {
+                    group = groupService.createGroup(groupName, members, owner, category);
+                } else {
+                    group = groupService.createGroup(groupName, members);
+                    if (category != null) {
+                        group.setCategory(category);
+                        groupRepository.save(group);
+                    }
+                }
             } else {
                 group = groupService.createGroup(groupName, members);
                 if (category != null) {
@@ -408,6 +415,10 @@ public class GroupController {
 
                     .body(Map.of("error", ex.getMessage()));
 
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(Map.of("error", "Failed to create group: " + ex.getMessage()));
         }
 
     }

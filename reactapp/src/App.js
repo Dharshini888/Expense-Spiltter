@@ -69,7 +69,7 @@ function AnimatedRoutes({ mode, setMode, groups, fetchAllGroups, handleCreateGro
                               />
                               <Route
                                     path="/groups/create"
-                                    element={<CreateGroupForm onCreateGroup={handleCreateGroup} />}
+                                    element={<CreateGroupForm onGroupAdded={fetchAllGroups} />}
                               />
                               <Route path="/search" element={<Search />} />
                               <Route path="/profile" element={<Profile />} />

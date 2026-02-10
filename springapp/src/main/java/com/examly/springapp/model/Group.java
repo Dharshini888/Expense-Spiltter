@@ -7,7 +7,7 @@ import java.util.*;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "groups")
+@Table(name = "`groups`")
 public class Group {
 
     @Id

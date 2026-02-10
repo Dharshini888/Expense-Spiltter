@@ -53,9 +53,9 @@ export default function GroupDetailPage({ groups, onAddExpense, onAddMember, ref
                 setTabIndex(newValue);
         };
 
-        const handleExpenseAdded = (gid, expense) => {
-                onAddExpense?.(gid, expense);
-                setRefreshTrigger(prev => prev + 1);
+        const handleExpenseAdded = async (gid, expense) => {
+                await onAddExpense?.(gid, expense);
+                await refreshGroups?.();
         };
 
         return (
@@ -131,7 +131,7 @@ export default function GroupDetailPage({ groups, onAddExpense, onAddMember, ref
                                                 </Box>
                                         </Paper>
 
-                                        <AnalyticsDashboard groupId={group.groupId} expenses={refreshTrigger} />
+                                        <AnalyticsDashboard groupId={group.groupId} expenses={group.expenses || []} />
                                 </Grid>
 
                                 <Grid item xs={12} lg={3}>
