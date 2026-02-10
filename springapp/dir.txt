@@ -1,0 +1,19 @@
+ Volume in drive E has no label.
+ Volume Serial Number is A69C-52B5
+
+ Directory of e:\5c02fcf1-390a-4a11-977f-fcc2fac766f9-a7d37415-62cc-4be2-80c0-e40346acc2f5\springapp
+
+05-02-2026  10:35    <DIR>          .
+04-02-2026  14:56    <DIR>          ..
+04-02-2026  14:32                40 .gitattributes
+04-02-2026  14:32               427 .gitignore
+04-02-2026  14:32    <DIR>          .mvn
+05-02-2026  10:35                 0 dir.txt
+04-02-2026  14:32            10,665 mvnw
+04-02-2026  14:32             7,061 mvnw.cmd
+04-02-2026  14:32            29,188 package-lock.json
+04-02-2026  14:59             2,890 pom.xml
+04-02-2026  14:32    <DIR>          src
+04-02-2026  14:53    <DIR>          target
+               7 File(s)         50,271 bytes
+               5 Dir(s)  164,040,712,192 bytes free

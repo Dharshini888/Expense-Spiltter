@@ -1,0 +1,175 @@
+[
+  {
+    "step": "Read and analyze backend dependencies from pom.xml and confirm project structure.",
+    "sub_steps": [
+      "Open /home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/pom.xml.",
+      "Verify that dependencies for Spring Web, Spring Data JPA, MySQL Connector, and validation are present.",
+      "Familiarize with initial Spring Boot source structure in /springapp/src/main/java/com/examly/springapp/."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/pom.xml"
+    ],
+    "description": "Ensures all required backend libraries are available and understand entrypoints for adding entities, repositories, services, and controllers."
+  },
+  {
+    "step": "Implement backend entity classes for Group, Member, and Expense with correct relationships.",
+    "sub_steps": [
+      "Create Group, Member, and Expense entities using JPA annotations and ensure referential integrity.",
+      "Group must have unique groupName, member list, and expense list.",
+      "Member must reference group; Expense must reference group and payer (member)."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/model/Group.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/model/Member.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/model/Expense.java"
+    ],
+    "files_to_edit": [],
+    "description": "Foundation data model for the expense splitter; enables persistence and relationship management for groups, members, and expenses."
+  },
+  {
+    "step": "Create repository interfaces for Group, Member, and Expense.",
+    "sub_steps": [
+      "Define GroupRepository, MemberRepository, and ExpenseRepository extending JpaRepository with query methods as necessary.",
+      "Add methods for finding by groupName and other lookups for relationship validation."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/repository/GroupRepository.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/repository/MemberRepository.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/repository/ExpenseRepository.java"
+    ],
+    "files_to_edit": [],
+    "description": "Adds data access layer for efficient CRUD and custom queries on persisted model objects."
+  },
+  {
+    "step": "Implement backend service layer with business logic for group and expense management.",
+    "sub_steps": [
+      "Create GroupService and ExpenseService for handling logic (group creation, adding members, validating payer, expense splitting, calculating balances).",
+      "Enforce group name uniqueness, member existence, amount validation, and exception handling as specified.",
+      "Ensure error messages and logic match test cases for validation."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/service/GroupService.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/service/ExpenseService.java"
+    ],
+    "files_to_edit": [],
+    "description": "Centralizes application logic and validation, ensuring a clean separation between controller and repository. Handles all required constraints and computational logic."
+  },
+  {
+    "step": "Create REST controllers for group and expense operations with required endpoints and error handling.",
+    "sub_steps": [
+      "Design endpoints for creating group, adding member, adding expense, fetching group details including expenses and balances.",
+      "Implement validation error responses with proper error format and HTTP status codes as required.",
+      "Add global exception handling to standardize JSON error responses.",
+      "Enable CORS for frontend requests."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/controller/GroupController.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/controller/ExpenseController.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/exception/GlobalExceptionHandler.java"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/main/java/com/examly/springapp/ExpenseSplitterApplication.java"
+    ],
+    "description": "Exposes backend services as RESTful APIs with JSON responses and error handling conforming to requirements for frontend integration and automated testing."
+  },
+  {
+    "step": "Implement JUnit test cases for backend logic and endpoints as required by test cases JSON.",
+    "sub_steps": [
+      "Create test class for GroupController and ExpenseController.",
+      "Implement tests for: testCreateGroupSuccess, testCreateGroupDuplicateName, testAddExpenseSuccess, testAddExpenseInvalidAmount, testGetGroupBalances.",
+      "Use MockMvc and proper mocks for repository/service interactions.",
+      "Assert response structures, error messages, and returned status codes.",
+      "Focus on positive and negative paths as described in each test case."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/test/java/com/examly/springapp/controller/GroupControllerTest.java",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/springapp/src/test/java/com/examly/springapp/controller/ExpenseControllerTest.java"
+    ],
+    "files_to_edit": [],
+    "description": "Provides complete automated testing for backend REST endpoints, validating that requirements and error handling match test expectations."
+  },
+  {
+    "step": "Compile, build, and run backend tests",
+    "sub_steps": [
+      "Run mvn clean compile -q -Dspring.main.banner-mode=off inside springapp/",
+      "Run mvn test -q -Dspring.main.banner-mode=off to verify backend tests.",
+      "Run mvn clean install -q -Dspring.main.banner-mode=off for final build validation."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [],
+    "description": "Verifies backend compiles cleanly and all backend test cases pass as required."
+  },
+  {
+    "step": "Read and analyze frontend dependencies from package.json and confirm project structure.",
+    "sub_steps": [
+      "Open /home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/package.json.",
+      "Ensure required dependencies for React, testing-library/react, and Jest are present.",
+      "Review src/ directory for App.js and related files."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/package.json"
+    ],
+    "description": "Confirms the React frontend has correct dependencies installed before component implementation."
+  },
+  {
+    "step": "Implement React frontend components, utilities, and styling",
+    "sub_steps": [
+      "Create components: GroupList, GroupDetail, AddMemberForm, AddExpenseForm, Balances.",
+      "Handle state management (group selection, member/expense list updates, error messages) at App.js and child components as appropriate.",
+      "Implement API calls to backend as specified (using fetch), handle JSON error formats.",
+      "Add CSS files for styling (container, forms, buttons, errors) using variables as dictated by design guidelines.",
+      "Use data-testid attributes as needed for test selectors."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/GroupList.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/GroupDetail.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/AddMemberForm.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/AddExpenseForm.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/Balances.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/utils/api.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/utils/constants.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/index.css"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/App.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/App.css"
+    ],
+    "description": "Implements all required UI features for group/expense management, state, and display; ensures modern design and minimal styling for usability and testability."
+  },
+  {
+    "step": "Implement Jest test cases for frontend components as per test cases JSON.",
+    "sub_steps": [
+      "For GroupList.js, create rendersGroupList test to check both groups appear in DOM.",
+      "For GroupDetail.js, create rendersMembersInGroup test to check all member names appear.",
+      "For AddExpenseForm.js, create addExpenseFormValidation test to verify form validation and error message rendering.",
+      "For Balances.js, create displaysBalancesCorrectly test to ensure member names and correct balances display.",
+      "Handle handlesDuplicateGroupError scenario (simulate API error and assert UI error message 'Group name already exists').",
+      "Create/modify .test.js files for each component and mock/fake API calls as needed.",
+      "No manual cleanup() calls; use data-testid for all critical elements."
+    ],
+    "files_to_add": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/GroupList.test.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/GroupDetail.test.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/AddExpenseForm.test.js",
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/components/Balances.test.js"
+    ],
+    "files_to_edit": [
+      "/home/coder/project/workspace/question_generation_service/solutions/393df57b-a0fa-4fc3-9e91-4ebdb2c8bac3/reactapp/src/App.test.js"
+    ],
+    "description": "Ensures all required frontend tests are in place and passing by testing key rendering, validation, and error logic, fully matching sample data and formats."
+  },
+  {
+    "step": "Install, lint, build, and run Jest tests for frontend.",
+    "sub_steps": [
+      "Run npm install in reactapp/ to install dependencies.",
+      "Run npm run build to confirm compilation.",
+      "Run npx eslint src/ --fix to lint and autofix code.",
+      "Run npm run test:ci to execute tests and verify output."
+    ],
+    "files_to_add": [],
+    "files_to_edit": [],
+    "description": "Compiles, lints, and validates that all required frontend components and tests are built and functioning as expected."
+  }
+]
